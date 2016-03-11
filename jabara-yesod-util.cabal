@@ -23,6 +23,7 @@ library
                      , yesod
                      , wai
                      , chunked-data
+                     , aeson
 
   exposed-modules: Jabara.Yesod.Util
                  , Jabara.Yesod.Middleware

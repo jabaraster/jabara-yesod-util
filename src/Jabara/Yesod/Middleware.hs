@@ -6,7 +6,6 @@ module Jabara.Yesod.Middleware (
 import Prelude hiding (mapM)
 import GHC.Base (mapM)
 import Data.Text (Text, isSuffixOf)
-import Network.Wai (Request(rawPathInfo))
 import Yesod (Yesod)
 import Yesod.Core (HandlerT, Route, getUrlRender, defaultCsrfMiddleware)
 

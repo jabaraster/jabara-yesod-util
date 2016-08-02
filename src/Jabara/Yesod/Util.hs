@@ -6,6 +6,8 @@ module Jabara.Yesod.Util (
 
   , tc
   , ttc
+
+  , lookupQueryStringParameterValue
 ) where
 
 import Data.Aeson (ToJSON, encode)
@@ -14,9 +16,9 @@ import Data.Text (Text)
 import Data.Text.Encoding (decodeUtf8)
 import GHC.Base
 import Network.Wai (Request(rawPathInfo))
+import Yesod.Auth (YesodAuth, maybeAuthId)
 import Yesod.Core (HandlerT, MonadHandler, Route, HandlerSite
                   , YesodRequest(..), getUrlRender, getRequest)
-import Yesod.Auth (YesodAuth, maybeAuthId)
 import Yesod.Core (Content)
 import Yesod.Core.Content (TypedContent(..), ToContent(..), ToTypedContent(..))
 
@@ -39,3 +41,7 @@ tc = toContent . encode
 
 ttc :: ToContent a => a -> TypedContent
 ttc = TypedContent "application/json" . toContent
+
+lookupQueryStringParameterValue :: MonadHandler m => Text -> m (Maybe Text)
+lookupQueryStringParameterValue parameterName = getRequest
+    >>= return . lookup parameterName . reqGetParams

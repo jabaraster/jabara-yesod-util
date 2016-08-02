@@ -11,6 +11,7 @@ module Jabara.Yesod.Util (
 ) where
 
 import Data.Aeson (ToJSON, encode)
+import Data.List as L (lookup)
 import Data.Maybe (maybe)
 import Data.Text (Text)
 import Data.Text.Encoding (decodeUtf8)
@@ -44,4 +45,4 @@ ttc = TypedContent "application/json" . toContent
 
 lookupQueryStringParameterValue :: MonadHandler m => Text -> m (Maybe Text)
 lookupQueryStringParameterValue parameterName = getRequest
-    >>= return . lookup parameterName . reqGetParams
+    >>= return . L.lookup parameterName . reqGetParams

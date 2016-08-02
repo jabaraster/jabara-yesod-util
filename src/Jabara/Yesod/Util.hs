@@ -1,6 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 module Jabara.Yesod.Util (
-  isAuthenticated
+    isAuthenticated
   , getResourcePath
   , getRequestPath
 
